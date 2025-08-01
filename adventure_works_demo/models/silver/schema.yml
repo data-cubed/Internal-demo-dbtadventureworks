@@ -1,0 +1,103 @@
+
+version: 2
+
+models:
+  # Address
+  - name: address
+    description: "Adress table"
+    columns:
+      - name: AddressID
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+
+  # Customer
+  - name: customer
+    description: Customer table
+    columns:
+      - name: CustomerID
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+  
+  # Customer Address
+  - name: customer_address
+    description: Customer Address table
+    columns:
+      - name: CustomerID
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+  
+  # Product
+  - name: product
+    description: Product table
+    columns:
+      - name: ProductID
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+  
+  # Product Category
+  - name: product_category
+    description: Product Category table
+    columns:
+      - name: ProductCategoryID
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+  
+  # Product Description
+  - name: product_description
+    description: Product Description table
+    columns:
+      - name: ProductDescriptionID
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+  
+  # Product Model
+  - name: product_model
+    description: Product Model table
+    columns:
+      - name: ProductModelID
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+  
+  # Product Model Description
+  - name: product_model_product_description
+    description: Product Model Description table
+    columns:
+      - name: ProductModelID
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+  
+  # Sales Order Detail
+  - name: sales_order_detail
+    description: Sales Order Detail table
+    columns:
+      - name: SalesOrderDetailID
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+  
+  # Sales Order Header
+  - name: sales_order_header
+    description: Sales Order Header table
+    columns:
+      - name: SalesOrderID
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
