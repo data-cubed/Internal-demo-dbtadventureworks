@@ -22,6 +22,7 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+target-path: "/Volumes/gold_{{ env_var('ENV_NAME') }}/reporting/web"
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
@@ -33,10 +34,10 @@ models:
   adventure_works_demo:
     # Config indicated by + and applies to all files under models/example/
     silver:
-      +database: silver_dev
+      +database: silver_{{ env_var('ENV_NAME') }}
       +materialized: table
       +schema: adventure_works
     gold:
-      +database: gold_dev
+      +database: gold_{{ env_var('ENV_NAME') }}
       +materialized: table
       +schema: adventure_works_modelled
