@@ -22,7 +22,7 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-target-path: "/Volumes/gold_{{ env_var('ENV_NAME') }}/reporting/web/dbt_docs"
+target-path: "/Volumes/gold_{{ env_var('ENV_NAME') }}/dbt_docs/web/dbt_docs"
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
