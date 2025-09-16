@@ -1,6 +1,6 @@
 # Profiles the service principal uses to authenticate with databricks when running dbt
 # Using a profile allows dbt jobs to be ran on standard compute without using a SQL warehouse
-dbt_transformations:
+adventure_works_demo:
   target: "{{ env_var('ENV_NAME') }}"
   outputs:
     development:
