@@ -1,0 +1,25 @@
+# Profiles the service principal uses to authenticate with databricks when running dbt
+# Using a profile allows dbt jobs to be ran on standard compute without using a SQL warehouse
+dbt_transformations:
+  target: "{{ env_var('ENV_NAME') }}"
+  outputs:
+    development:
+      type: databricks
+      # catalog: # if using unity catalog, you have to enter the according catalog here
+      catalog: demosuite{{ env_var('ENV_NAME') }}-raw #optional catalog name if you are using Unity Catalog
+      schema: placeholder
+      host: "{{ env_var('WORKSPACE_URL') }}"
+      http_path: "{{ env_var('HTTP_PATH') }}"
+      auth_type: oauth
+      client_id: "{{ env_var('CLIENT_ID') }}"
+      client_secret: "{{ env_var('CLIENT_SECRET') }}"
+    production:
+      type: databricks
+      # catalog: # if using unity catalog, you have to enter the according catalog here
+      catalog: demosuite{{ env_var('ENV_NAME') }}-raw #optional catalog name if you are using Unity Catalog
+      schema: placeholder
+      host: "{{ env_var('WORKSPACE_URL') }}"
+      http_path: "{{ env_var('HTTP_PATH') }}"
+      auth_type: oauth
+      client_id: "{{ env_var('CLIENT_ID') }}"
+      client_secret: "{{ env_var('CLIENT_SECRET') }}"
