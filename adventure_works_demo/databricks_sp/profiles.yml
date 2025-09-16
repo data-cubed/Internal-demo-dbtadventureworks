@@ -3,7 +3,7 @@
 adventure_works_demo:
   target: "{{ env_var('ENV_NAME') }}"
   outputs:
-    development:
+    dev:
       type: databricks
       # catalog: # if using unity catalog, you have to enter the according catalog here
       catalog: demosuite{{ env_var('ENV_NAME') }}-raw #optional catalog name if you are using Unity Catalog
@@ -13,7 +13,7 @@ adventure_works_demo:
       auth_type: oauth
       client_id: "{{ env_var('CLIENT_ID') }}"
       client_secret: "{{ env_var('CLIENT_SECRET') }}"
-    production:
+    prod:
       type: databricks
       # catalog: # if using unity catalog, you have to enter the according catalog here
       catalog: demosuite{{ env_var('ENV_NAME') }}-raw #optional catalog name if you are using Unity Catalog
