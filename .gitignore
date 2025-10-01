@@ -17,3 +17,6 @@ env*/
 
 # But explicitly ignore test.env files
 test.env
+
+adventure_works_demo/profiles.yml
+adventure_works_demo/.user.yml

@@ -6,27 +6,45 @@ models:
     description: "Customer dimension table"
     columns:
       - name: CustomerID
-        description: "The primary key for this table"
+        description: "The primary key for the dim_customer table"
         data_tests:
           - unique
           - not_null
+        constraints:
+          - type: primary_key
 
   # Dim Product
   - name: dim_product
     description: "Product dimension table"
     columns:
       - name: ProductID
-        description: "The primary key for this table"
+        description: "The primary key for the dim_product table"
         data_tests:
           - unique
           - not_null
+        constraints:
+          - type: primary_key
           
   # Fact Sales
-  - name: dim_sales
+  - name: fact_sales
     description: "Sales fact table"
     columns:
       - name: SalesOrderID
-        description: "The primary key for this table"
+        description: "The primary key for the fact_sales table"
         data_tests:
           - unique
           - not_null
+        constraints:
+          - type: primary_key
+      - name: ProductID
+        description: "The foreign key to the dim_product table"
+        constraints:
+          - type: foreign_key
+            to: ref('dim_product')
+            to_columns: [ProductID]
+      - name: CustomerID
+        description: "The foreign key to the dim_customer table"
+        constraints:
+          - type: foreign_key
+            to: ref('dim_customer')
+            to_columns: [CustomerID]

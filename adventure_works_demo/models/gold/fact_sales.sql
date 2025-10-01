@@ -1,6 +1,9 @@
 {{ config(
     materialized='incremental',
-    unique_key='SalesOrderID'
+    unique_key='SalesOrderID',
+    post_hook=[
+        "{{ apply_constraints() }}"
+    ]
 ) }}
 
 SELECT

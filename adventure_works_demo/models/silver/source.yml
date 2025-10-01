@@ -1,7 +1,7 @@
 sources:
   - name: adventure_works_bronze
     description: Adventure Worrks Source Data
-    database: bronze_{{ env_var('ENV_NAME') }}
+    database: demosuite{{ env_var('ENV_NAME') }}-raw
     schema: adventure_works_lt
     tables:
       # Address

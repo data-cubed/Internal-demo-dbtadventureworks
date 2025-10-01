@@ -11,6 +11,8 @@ models:
         data_tests:
           - unique
           - not_null
+        constraints:
+          - type: primary_key
 
   # Customer
   - name: customer
@@ -21,16 +23,26 @@ models:
         data_tests:
           - unique
           - not_null
+        constraints:
+          - type: primary_key
   
   # Customer Address
   - name: customer_address
     description: Customer Address table
     columns:
-      - name: CustomerID
+      - name: AddressID
         description: "The primary key for this table"
         data_tests:
           - unique
           - not_null
+        constraints:
+          - type: primary_key
+      - name: CustomerID
+        description: "The foreign key to the customer table"
+        constraints:
+          - type: foreign_key
+            to: ref('customer')
+            to_columns: [CustomerID]
   
   # Product
   - name: product
@@ -41,6 +53,20 @@ models:
         data_tests:
           - unique
           - not_null
+        constraints:
+          - type: primary_key
+      - name: ProductCategoryID
+        description: "The foreign key to the product category table"
+        constraints:
+          - type: foreign_key
+            to: ref('product_category')
+            to_columns: [ProductCategoryID]
+      - name: ProductModelID
+        description: "The foreign key to the product model table"
+        constraints:
+          - type: foreign_key
+            to: ref('product_model')
+            to_columns: [ProductModelID]
   
   # Product Category
   - name: product_category
@@ -51,6 +77,8 @@ models:
         data_tests:
           - unique
           - not_null
+        constraints:
+          - type: primary_key
   
   # Product Description
   - name: product_description
@@ -61,6 +89,8 @@ models:
         data_tests:
           - unique
           - not_null
+        constraints:
+          - type: primary_key
   
   # Product Model
   - name: product_model
@@ -71,6 +101,8 @@ models:
         data_tests:
           - unique
           - not_null
+        constraints:
+          - type: primary_key
   
   # Product Model Description
   - name: product_model_product_description
@@ -81,6 +113,17 @@ models:
         data_tests:
           - unique
           - not_null
+        constraints:
+          - type: primary_key
+          - type: foreign_key
+            to: ref('product_model')
+            to_columns: [ProductModelID]
+      - name: ProductDescriptionID
+        description: "The foreign key to the product description table"
+        constraints:
+          - type: foreign_key
+            to: ref('product_description')
+            to_columns: [ProductDescriptionID]
   
   # Sales Order Detail
   - name: sales_order_detail
@@ -91,6 +134,14 @@ models:
         data_tests:
           - unique
           - not_null
+        constraints:
+          - type: primary_key
+      - name: SalesOrderID
+        description: "The foreign key to the sales order header table"
+        constraints:
+          - type: foreign_key
+            to: ref('sales_order_header')
+            to_columns: [SalesOrderID]
   
   # Sales Order Header
   - name: sales_order_header
@@ -101,3 +152,5 @@ models:
         data_tests:
           - unique
           - not_null
+        constraints:
+          - type: primary_key
