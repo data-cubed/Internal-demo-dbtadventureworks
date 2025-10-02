@@ -1,9 +1,7 @@
 {{ config(
     materialized='incremental',
     unique_key='SalesOrderID',
-    post_hook=[
-        "{{ apply_constraints() }}"
-    ]
+    on_schema_change='append_new_columns'
 ) }}
 
 SELECT

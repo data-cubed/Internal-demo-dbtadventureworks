@@ -44,6 +44,11 @@ models:
       +materialized: table
       +schema: adventure_works_lt
     gold:
-      +database: demosuite{{ env_var('ENV_NAME') }}-modelled
-      +materialized: table
-      +schema: adventure_works_modelled
+      modelled:
+        +database: demosuite{{ env_var('ENV_NAME') }}-modelled
+        +materialized: table
+        +schema: adventure_works_modelled
+      reporting:
+        +database: demosuite{{ env_var('ENV_NAME') }}-modelled
+        +materialized: materialized_view
+        +schema: adventure_works_reporting

@@ -39,14 +39,14 @@
                 ALTER TABLE {{ this }}
                 ALTER COLUMN {{ col_name }} SET NOT NULL
               {% endset %}
-             
+
               {{ log("Applying NOT NULL constraint on column: " ~ col_name, info=true) }}
               {% do run_query(nn_sql) %}
             {% endif %}
           {% endfor %}
         {% endif %}
       {% endfor %}
-     
+
       {# 3️⃣ Now apply primary key constraints (after NOT NULL is set) #}
       {% if pk_columns | length > 0 %}
         {% set pk_name = 'pk_' ~ this.identifier %}
@@ -54,7 +54,7 @@
           ALTER TABLE {{ this }}
           ADD CONSTRAINT {{ pk_name }} PRIMARY KEY ({{ pk_columns | join(', ') }}) NOT ENFORCED
         {% endset %}
-       
+
         {{ log("Applying primary key constraint: " ~ pk_name, info=true) }}
         {% do run_query(pk_sql) %}
       {% endif %}
@@ -74,14 +74,14 @@
                 {% set resolved_ref = ref(model_name) %}
                 {% set ref_table = resolved_ref %}
               {% endif %}
-             
+
               {% set fk_sql %}
                 ALTER TABLE {{ this }}
                 ADD CONSTRAINT {{ fk_name }}
                 FOREIGN KEY ({{ col_name }})
                 REFERENCES {{ ref_table }}({{ ref_columns }}) NOT ENFORCED
               {% endset %}
-             
+
               {{ log("Applying foreign key constraint: " ~ fk_name ~ " -> " ~ ref_table, info=true) }}
               {% do run_query(fk_sql) %}
             {% endif %}
@@ -99,7 +99,7 @@
                 ALTER TABLE {{ this }}
                 ADD CONSTRAINT {{ unique_name }} UNIQUE ({{ col_name }}) NOT ENFORCED
               {% endset %}
-             
+
               {{ log("Applying unique constraint: " ~ unique_name, info=true) }}
               {% do run_query(unique_sql) %}
             {% endif %}
@@ -117,7 +117,7 @@
                 ALTER TABLE {{ this }}
                 ADD CONSTRAINT {{ check_name }} CHECK ({{ constraint.expression }}) NOT ENFORCED
               {% endset %}
-             
+
               {{ log("Applying check constraint: " ~ check_name, info=true) }}
               {% do run_query(check_sql) %}
             {% endif %}

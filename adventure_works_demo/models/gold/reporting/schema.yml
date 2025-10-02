@@ -2,31 +2,34 @@ version: 2
 
 models:
   # Dim Customer
-  - name: dim_customer
+  - name: vw_dim_customer
     description: "Customer dimension table"
     columns:
       - name: CustomerID
-        description: "The primary key for the dim_customer table"
+        description: "The primary key for the vw_dim_customer table"
+        data_type: int
         data_tests:
           - unique
           - not_null
         constraints:
+          - type: not_null
           - type: primary_key
 
   # Dim Product
-  - name: dim_product
+  - name: vw_dim_product
     description: "Product dimension table"
     columns:
       - name: ProductID
-        description: "The primary key for the dim_product table"
+        description: "The primary key for the vw_dim_product table"
         data_tests:
           - unique
           - not_null
         constraints:
+          - type: not_null
           - type: primary_key
           
   # Fact Sales
-  - name: fact_sales
+  - name: vw_fact_sales
     description: "Sales fact table"
     columns:
       - name: SalesOrderID
@@ -35,16 +38,17 @@ models:
           - unique
           - not_null
         constraints:
+          - type: not_null
           - type: primary_key
       - name: ProductID
-        description: "The foreign key to the dim_product table"
+        description: "The foreign key to the vw_dim_product table"
         constraints:
           - type: foreign_key
-            to: ref('dim_product')
+            to: ref('vw_dim_product')
             to_columns: [ProductID]
       - name: CustomerID
-        description: "The foreign key to the dim_customer table"
+        description: "The foreign key to the vw_dim_customer table"
         constraints:
           - type: foreign_key
-            to: ref('dim_customer')
+            to: ref('vw_dim_customer')
             to_columns: [CustomerID]

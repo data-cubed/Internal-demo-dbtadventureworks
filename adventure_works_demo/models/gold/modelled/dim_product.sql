@@ -1,10 +1,7 @@
 {{ config(
     materialized='incremental',
     unique_key='ProductId',
-    on_schema_change='sync_all_columns',
-    post_hook=[
-        "{{ apply_constraints() }}"
-    ]
+    on_schema_change='append_new_columns'
 ) }}
 
 SELECT 
