@@ -1,6 +1,6 @@
 version: 2
 
-# Complete table schemas (without constraints and data_tests)
+# Complete table schemas (with constraints and data_tests)
 # can be generated using dbt-codegen generate_model_schemas
 # documentation: https://hub.getdbt.com/dbt-labs/codegen/latest/
 
